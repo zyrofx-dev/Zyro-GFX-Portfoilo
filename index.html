@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zyro GFX | Thumbnail Designer</title>
+    <link rel="stylesheet" href="style.css?v=1.2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <header class="main-header unified-bar">
+        <div class="header-content">
+            <div class="profile-section" id="bioTrigger">
+                <div class="profile-img-container">
+                    <img src="assets/profile.png" alt="Zyro GFX">
+                </div>
+                <div class="profile-info">
+                    <h1 class="name">Zyro GFX</h1>
+                    <p class="role" data-hover="CLICK TO SEE MY BIO">Thumbnail Designer</p>
+                </div>
+            </div>
+
+            <nav class="header-nav">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#works" class="nav-link">Works</a>
+                <a href="#about" class="nav-link">About Me</a>
+                <a href="#reviews" class="nav-link">Reviews</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="actions-section">
+                <a href="#" class="instagram-pill">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="sparkle-icon">
+                        <path
+                            d="M12 3l1.912 5.813L21 10.75l-7.088 1.937L12 21l-1.912-5.813L3 13.25l7.088-1.937L12 3z" />
+                    </svg>
+                    <span>Instagram</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <h2 class="hero-title">I Craft Thumbnails<br>As Your Requirements.</h2>
+
+        <!-- Works Section (Marquee - 2 Rows) -->
+        <div id="works" class="works-preview">
+            <!-- Row 1: Scroll Left -->
+            <div class="marquee-wrapper">
+                <div class="marquee-row scroll-left" id="marqueeRow1">
+                    <!-- Dynamically populated from localStorage -->
+                </div>
+            </div>
+
+            <!-- Row 2: Scroll Right -->
+            <div class="marquee-wrapper">
+                <div class="marquee-row scroll-right" id="marqueeRow2">
+                    <!-- Dynamically populated from localStorage -->
+                </div>
+            </div>
+        </div>
+        <!-- About Me Section (Reference Match) -->
+        <section id="about" class="section about-section">
+            <div class="container">
+                <div class="profile-header">
+                    <span class="expert-badge">✦ Thumbnail Designer</span>
+                    <h2 class="profile-main-title">Zyro GFX, <span class="dimmed">Your Designer</span></h2>
+                    <p class="profile-subtitle">Crafting High Quality And Beautiful Thumbnails For Creators.</p>
+                </div>
+
+                <div class="profile-grid">
+                    <!-- Left: Profile Card -->
+                    <div class="profile-card-main">
+                        <div class="profile-img-wrapper">
+                            <img src="assets/profile.png" alt="Zyro GFX">
+                            <div class="status-pill">
+                                <span class="status-dot"></span>
+                                Available for work
+                            </div>
+                        </div>
+                        <div class="profile-card-content">
+                            <h3>Hello I Am Zyro GFX</h3>
+                            <p>Thumbnail Designer.</p>
+                            <div class="social-icons-mini">
+                                <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                                    </svg></a>
+                            </div>
+                            <button class="connect-btn">Connect With Me</button>
+                        </div>
+                    </div>
+
+                    <!-- Right: Bio & Experience -->
+                    <div class="profile-details-main">
+                        <div class="bio-text-block">
+                            <p>I'm Zyro GFX, a dedicated High-Quality Thumbnail Designer based in the digital
+                                world. I specialize in high-conversion design with seamless technical execution to craft
+                                exceptional digital experiences for YouTube creators.</p>
+                        </div>
+
+                        <div class="skills-tags">
+                            <span class="skill-tag">Thumbnail Design</span>
+                            <span class="skill-tag">After Effects</span>
+                            <span class="skill-tag">Premiere Pro</span>
+                            <span class="skill-tag">Photoshop</span>
+                            <span class="skill-tag">Illustrator</span>
+                        </div>
+
+                        <div class="experience-list">
+                            <div class="exp-item">
+                                <span class="exp-role">Zyro GFX</span>
+                                <span class="exp-company">Global Clients</span>
+                                <span class="exp-year">2021</span>
+                            </div>
+                            <div class="exp-item">
+                                <span class="exp-role">Lead Designer</span>
+                                <span class="exp-company">Creator Agency</span>
+                                <span class="exp-year">2022</span>
+                            </div>
+                            <div class="exp-item">
+                                <span class="exp-role">Visual Strategist</span>
+                                <span class="exp-company">Gaming Network</span>
+                                <span class="exp-year">2023</span>
+                            </div>
+                            <div class="exp-item">
+                                <span class="exp-role">Creative Director</span>
+                                <span class="exp-company">Zyro GFX</span>
+                                <span class="exp-year">2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section id="reviews" class="section reviews-section">
+            <div class="container">
+                <div class="reviews-header">
+                    <span class="reviews-badge">✦ Reviews</span>
+                    <h2 class="reviews-title">What Clients Say.</h2>
+                    <p class="reviews-sub">The Reviews Of The creators I've worked with.</p>
+                </div>
+
+                <div class="reviews-slider-wrap">
+                    <!-- Card -->
+                    <div class="review-card" id="reviewCard">
+                        <div class="review-card-inner">
+                            <!-- Author -->
+                            <div class="review-author">
+                                <div class="review-avatar-wrap">
+                                    <img src="assets/profile.png" alt="Client" class="review-avatar" id="reviewAvatar">
+                                </div>
+                                <div class="review-author-info">
+                                    <strong class="review-name" id="reviewName">Loading…</strong>
+                                    <span class="review-role" id="reviewRole"></span>
+                                </div>
+                            </div>
+
+                            <!-- Quote -->
+                            <blockquote class="review-quote" id="reviewQuote"></blockquote>
+
+                            <!-- Stars -->
+                            <div class="review-stars" id="reviewStars"></div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation arrows -->
+                    <div class="review-nav">
+                        <button class="review-arrow" id="reviewPrev" onclick="changeReview(-1)" aria-label="Previous">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="15 18 9 12 15 6" />
+                            </svg>
+                        </button>
+                        <div class="review-dots" id="reviewDots"></div>
+                        <button class="review-arrow" id="reviewNext" onclick="changeReview(1)" aria-label="Next">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="section pricing-section">
+            <div class="container">
+                <div class="pricing-header">
+                    <span class="expert-badge">✦ Investment</span>
+                    <h2 class="profile-main-title">Premium <span class="dimmed">Packages</span></h2>
+                    <p class="profile-subtitle">Tailored solutions for serious creators who want to dominate their
+                        niche.</p>
+
+                    <div class="currency-toggle-wrapper">
+                        <span class="currency-label active" id="label-inr">INR (₹)</span>
+                        <label class="theme-switch">
+                            <input type="checkbox" id="currencyToggle" onchange="toggleCurrency()">
+                            <span class="theme-slider round"></span>
+                        </label>
+                        <span class="currency-label" id="label-usd">USD ($)</span>
+                    </div>
+                </div>
+
+                <div class="pricing-grid">
+                    <!-- Starter -->
+                    <div class="pricing-card">
+                        <div class="pricing-card-header">
+                            <h3>Single Thumbnail</h3>
+                            <div class="price">
+                                <div class="inr-price" style="display: flex; align-items: flex-start; gap: 4px;">
+                                    <span>₹</span><b id="price1_inr">12,500</b>
+                                </div>
+                                <div class="usd-price" style="display: none; align-items: flex-start; gap: 4px;">
+                                    <span>$</span><b id="price1_usd">150</b>
+                                </div>
+                            </div>
+                            <p>Perfect for testing the waters and seeing the Zyro GFX difference.</p>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                </svg> 1 High-Converting Thumbnail</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                </svg> Psychological CTR Strategy</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                </svg> 2 Revisions Included</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                </svg> 48-Hour Turnaround</li>
+                        </ul>
+                        <a href="#contact" class="pricing-btn">Contact Now</a>
+                    </div>
+
+                    <!-- Creator Retainer -->
+                    <div class="pricing-card popular">
+                        <div class="popular-badge">Most Popular</div>
+                        <div class="pricing-card-header">
+                            <h3>Creator Retainer</h3>
+                            <div class="price">
+                                <div class="inr-price" style="display: flex; align-items: flex-start; gap: 4px;">
+                                    <span>₹</span><b id="price2_inr">42,000</b><span>/mo</span>
+                                </div>
+                                <div class="usd-price" style="display: none; align-items: flex-start; gap: 4px;">
+                                    <span>$</span><b id="price2_usd">500</b><span>/mo</span>
+                                </div>
+                            </div>
+                            <p>A consistent flow of premium designs to keep your channel growing.</p>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                </svg> 4 Premium Thumbnails/mo</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                </svg> Concept Brainstorming</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                </svg> Priority Slack Support</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                </svg> Unlimited Revisions</li>
+                        </ul>
+                        <a href="#contact" class="pricing-btn popular-btn">Contact Now</a>
+                    </div>
+
+                    <!-- Channel Overhaul -->
+                    <div class="pricing-card">
+                        <div class="pricing-card-header">
+                            <h3>Channel Overhaul</h3>
+                            <div class="price"><b id="price3_inr">Custom</b></div>
+                            <p>Complete visual rebrand to establish massive authority in your space.</p>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                </svg> 10 Thumbnail Revamps</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                </svg> Custom Channel Banner</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                </svg> 3D Assets Creation</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                </svg> Competitor Analysis</li>
+                        </ul>
+                        <a href="#contact" class="pricing-btn">Contact Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="section faq-section">
+            <div class="container">
+                <div class="faq-header">
+                    <span class="faq-badge">FAQ's</span>
+                    <h2 class="faq-title">Frequently Asked Questions</h2>
+                    <p class="faq-sub">Answers to common questions about my services, processes.</p>
+                </div>
+
+                <div class="faq-layout">
+                    <!-- Left Column -->
+                    <div class="faq-column" id="faqCol1">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="faq-column" id="faqCol2">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Removed faq-footer since it's not in the new image -->
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                <div class="contact-header">
+                    <h2 class="contact-title">Get In Touch With Me</h2>
+                    <p class="contact-sub">Reach out to us for inquiries, collaborations, or to discuss your project
+                        needs.</p>
+                </div>
+
+                <div class="contact-glass-container">
+                    <div class="contact-form-header">
+                        <h3>Send me a message</h3>
+                        <p>Use our convenient contact form to reach out with questions, feedback, or collaboration
+                            inquiries.</p>
+                    </div>
+
+                    <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent successfully!');">
+                        <div class="form-row">
+                            <input type="text" placeholder="Name" required>
+                            <input type="email" placeholder="Email" required>
+                        </div>
+                        <div class="form-row">
+                            <textarea placeholder="Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="contact-submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Section -->
+        <footer class="main-footer">
+            <div class="footer-container">
+                <div class="footer-bottom-action">
+                    <a href="#contact" class="contact-pill">Contact Now <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="footer-content-wrapper">
+                    <!-- Left Section: Socials & Copyright -->
+                    <div class="footer-left">
+                        <div class="footer-socials">
+                            <a href="#" class="social-icon-box"><i class="fab fa-discord"></i></a>
+                            <a href="#" class="social-icon-box"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon-box"><i class="fas fa-envelope"></i></a>
+                        </div>
+                        <div class="footer-copyright-info">
+                            <p class="copyright">© 2026 Zyro GFX. All rights reserved.</p>
+                            <p class="credits">Made with <span class="heart">❤️</span> by <strong>Insane</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="footer-right">
+                        <nav class="footer-nav">
+                            <a href="#">Home</a>
+                            <a href="#works">Works</a>
+                            <a href="#about">About Me</a>
+                            <a href="#reviews">Reviews</a>
+                            <a href="#pricing">Pricing</a>
+                            <a href="#faq">FAQ</a>
+                            <a href="#contact">Contact</a>
+                        </nav>
+                        <div class="footer-tagline">
+                            <p class="community-tag">Premium Portfoilo Of Zyro GFX</p>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </footer>
+
+        <div id="projectModal" class="modal">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <img class="modal-content" id="modalImg">
+        </div>
+
+        <!-- Custom Cursor -->
+
+
+        <!-- Bio Dropdown (Premium Edition) -->
+        <div id="bioDropdown" class="bio-dropdown">
+            <div class="bio-noise-overlay"></div>
+
+            <!-- Close -->
+            <button id="bioClose" class="bio-close">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+            </button>
+
+            <div class="bio-inner">
+
+                <!-- LEFT COLUMN -->
+                <div class="bio-left">
+                    <div class="bio-avatar-wrap">
+                        <img src="assets/profile.png" alt="Zyro GFX" class="bio-avatar">
+                        <div class="bio-avatar-ring"></div>
+                    </div>
+                    <div class="bio-identity">
+                        <h2 class="bio-name">Zyro GFX</h2>
+                        <p class="bio-role-tag">Thumbnail Designer</p>
+                    </div>
+                    <div class="bio-avail-pill">
+                        <span class="bio-avail-dot"></span>
+                        Available for work
+                    </div>
+                    <div class="bio-social-row">
+                        <a href="#" class="bio-social-btn" title="Instagram">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                            </svg>
+                        </a>
+                        <a href="#" class="bio-social-btn" title="Email">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                <polyline points="22,6 12,13 2,6" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- RIGHT COLUMN -->
+                <div class="bio-right">
+
+                    <!-- Header -->
+                    <div class="bio-right-header">
+                        <div class="bio-headline-label">ABOUT ME</div>
+                        <h3 class="bio-headline">Crafting visuals that <em>convert.</em></h3>
+                        <p class="bio-desc">I specialise in high-conversion thumbnail design — blending psychological
+                            triggers with cutting-edge creative to deliver work that doesn't just look good, it drives
+                            real results.</p>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="bio-stats-row">
+                        <div class="bio-stat-card">
+                            <span class="bio-stat-num">3+</span>
+                            <span class="bio-stat-label">Years Exp.</span>
+                        </div>
+                        <div class="bio-stat-divider"></div>
+                        <div class="bio-stat-card">
+                            <span class="bio-stat-num">500+</span>
+                            <span class="bio-stat-label">Projects</span>
+                        </div>
+                        <div class="bio-stat-divider"></div>
+                        <div class="bio-stat-card">
+                            <span class="bio-stat-num">100+</span>
+                            <span class="bio-stat-label">Happy Clients</span>
+                        </div>
+                    </div>
+
+                    <!-- Skills -->
+                    <div class="bio-skills-section">
+                        <div class="skills-header">
+                            <div class="skills-accent-line"></div>
+                            <h4 class="skills-title">SKILLS &amp; TOOLS</h4>
+                        </div>
+                        <div class="skills-tags-cloud">
+                            <span class="skill-tag-pill">Photoshop</span>
+                            <span class="skill-tag-pill">Illustrator</span>
+                            <span class="skill-tag-pill">Premiere Pro</span>
+                            <span class="skill-tag-pill">After Effects</span>
+                            <span class="skill-tag-pill">Figma</span>
+                            <span class="skill-tag-pill">DaVinci Resolve</span>
+                            <span class="skill-tag-pill">Lightroom</span>
+                            <span class="skill-tag-pill">Blender</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // --- Works: Load from localStorage ---
+            function loadWorks() {
+                const stored = JSON.parse(localStorage.getItem('reddyData')) || { works: [] };
+                let works = stored.works || [];
+
+                // Normalize: support both old string format and new object format
+                works = works.map(w => typeof w === 'object' ? w : { src: w, name: w });
+
+                // Fallback to default thumbs if admin hasn't added any yet
+                if (works.length === 0) {
+                    works = [
+                        { src: 'assets/thumb1.jpg', name: 'Work 1' },
+                        { src: 'assets/thumb2.jpg', name: 'Work 2' },
+                        { src: 'assets/thumb3.jpg', name: 'Work 3' },
+                        { src: 'assets/thumb4.jpg', name: 'Work 4' },
+                        { src: 'assets/thumb5.jpg', name: 'Work 5' },
+                    ];
+                }
+
+                function makeItems(list) {
+                    return list.map((w, i) =>
+                        `<div class="work-item" onclick="openModal('${w.src}')">
+                        <img src="${w.src}" alt="${w.name}">
+                    </div>`
+                    ).join('');
+                }
+
+                const items = makeItems(works);
+                // Row 1 scrolls left — forward order
+                document.getElementById('marqueeRow1').innerHTML =
+                    `<div class="marquee-content">${items}</div><div class="marquee-content" aria-hidden="true">${items}</div>`;
+
+                // Row 2 scrolls right — reverse order
+                const reversed = [...works].reverse();
+                const itemsRev = makeItems(reversed);
+                document.getElementById('marqueeRow2').innerHTML =
+                    `<div class="marquee-content">${itemsRev}</div><div class="marquee-content" aria-hidden="true">${itemsRev}</div>`;
+            }
+
+            loadWorks();
+
+            const bioTrigger = document.getElementById('bioTrigger');
+            const bioDropdown = document.getElementById('bioDropdown');
+            const bioClose = document.getElementById('bioClose');
+
+            bioTrigger.addEventListener('click', () => {
+                bioDropdown.classList.add('open');
+            });
+
+            bioClose.addEventListener('click', () => {
+                bioDropdown.classList.remove('open');
+            });
+
+            // Close when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!bioDropdown.contains(e.target) && !bioTrigger.contains(e.target)) {
+                    bioDropdown.classList.remove('open');
+                }
+            });
+
+
+            // --- Custom Cursor Logic ---
+
+
+
+
+
+            // --- Reviews Slider ---
+            const reviews = [
+                {
+                    name: "MrBeast Editor",
+                    role: "YouTube Creator · 200M+ Subs",
+                    quote: "Reddy completely transformed our thumbnail game. Every design he delivers stops the scroll instantly — our CTR jumped 48% in the first month. The attention to colour psychology and composition is on another level.",
+                    stars: 5,
+                    avatar: "assets/profile.png"
+                },
+                {
+                    name: "TechBurst",
+                    role: "Tech Channel · 5M Subs",
+                    quote: "Working with Reddy is unlike any other designer I've hired. He doesn't just make pretty thumbnails — he makes thumbnails that convert. Fast delivery, great communication, and the results speak for themselves.",
+                    stars: 5,
+                    avatar: "assets/profile.png"
+                },
+                {
+                    name: "GamingWithZero",
+                    role: "Gaming Creator · 1M Subs",
+                    quote: "I've tried 10+ thumbnail designers. Reddy is the only one who truly understands what drives clicks. Our impressions doubled and the quality is consistently elite. Highly recommend.",
+                    stars: 5,
+                    avatar: "assets/profile.png"
+                },
+                {
+                    name: "FinanceFlow",
+                    role: "Finance Creator · 800K Subs",
+                    quote: "Professional, creative, and incredibly fast. Reddy took our brand visuals to a whole new level. Every thumbnail feels premium and perfectly aligned with what our audience responds to.",
+                    stars: 5,
+                    avatar: "assets/profile.png"
+                }
+            ];
+
+            let currentReview = 0;
+
+            function renderReview(index, direction = 0) {
+                const card = document.getElementById('reviewCard');
+                card.style.opacity = '0';
+                card.style.transform = direction === 1 ? 'translateX(30px)' : direction === -1 ? 'translateX(-30px)' : 'translateX(0)';
+
+                setTimeout(() => {
+                    const r = reviews[index];
+                    document.getElementById('reviewName').textContent = r.name;
+                    document.getElementById('reviewRole').textContent = r.role;
+                    document.getElementById('reviewQuote').textContent = r.quote;
+                    document.getElementById('reviewAvatar').src = r.avatar;
+                    document.getElementById('reviewStars').innerHTML = '★'.repeat(r.stars) + '☆'.repeat(5 - r.stars);
+
+                    // dots
+                    document.querySelectorAll('.rev-dot').forEach((d, i) => d.classList.toggle('active', i === index));
+
+                    card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateX(0)';
+                }, 200);
+            }
+
+            function changeReview(dir) {
+                currentReview = (currentReview + dir + reviews.length) % reviews.length;
+                renderReview(currentReview, dir);
+            }
+
+            // Build dots
+            const dotsWrap = document.getElementById('reviewDots');
+            reviews.forEach((_, i) => {
+                const d = document.createElement('span');
+                d.className = 'rev-dot' + (i === 0 ? ' active' : '');
+                d.onclick = () => { const dir = i > currentReview ? 1 : -1; currentReview = i; renderReview(i, dir); };
+                dotsWrap.appendChild(d);
+            });
+
+            renderReview(0);
+
+            // --- Pricing Logic ---
+            const siteData = JSON.parse(localStorage.getItem('reddyData')) || {};
+            if (siteData.pricing) {
+                if (siteData.pricing.p1_inr) document.getElementById('price1_inr').textContent = siteData.pricing.p1_inr;
+                if (siteData.pricing.p1_usd) document.getElementById('price1_usd').textContent = siteData.pricing.p1_usd;
+                if (siteData.pricing.p2_inr) document.getElementById('price2_inr').textContent = siteData.pricing.p2_inr;
+                if (siteData.pricing.p2_usd) document.getElementById('price2_usd').textContent = siteData.pricing.p2_usd;
+                if (siteData.pricing.p3_inr) document.getElementById('price3_inr').textContent = siteData.pricing.p3_inr;
+            }
+
+            function toggleCurrency() {
+                const isUsd = document.getElementById('currencyToggle').checked;
+
+                document.querySelectorAll('.inr-price').forEach(el => el.style.display = isUsd ? 'none' : 'flex');
+                document.querySelectorAll('.usd-price').forEach(el => el.style.display = isUsd ? 'flex' : 'none');
+
+                if (isUsd) {
+                    document.getElementById('label-usd').classList.add('active');
+                    document.getElementById('label-inr').classList.remove('active');
+                } else {
+                    document.getElementById('label-inr').classList.add('active');
+                    document.getElementById('label-usd').classList.remove('active');
+                }
+            }
+
+            // --- FAQ Logic ---
+            const fallbackFaqs = [
+                { q: "What information do you need to start?", a: "I typically need:\n\n~Video/topic details.\n\n~Preferred text/title.\n\n~Any specific images or thumbnail references.\n\nColor/style preferences." },
+                { q: "How much do you charge for a thumbnail?", a: "Pricing varies based on the complexity and package you choose. Check the pricing section for more details." },
+                { q: "How long does it take to complete a thumbnail?", a: "Standard turnaround time is 48 hours, but rush delivery is available upon request." },
+                { q: "Can I request revisions?", a: "Yes, revisions are included in all packages to ensure you are 100% satisfied with the final result." },
+                { q: "How do I place an order?", a: "You can place an order by reaching out via the contact form or directly through my social channels." },
+                { q: "Can you match a specific style?", a: "Absolutely! Provide me with references and I can adapt to any specific style you are looking for." }
+            ];
+
+            let siteFaqs = [];
+            if (siteData && siteData.faq && siteData.faq.length > 0) {
+                siteFaqs = siteData.faq;
+            } else {
+                siteFaqs = fallbackFaqs;
+            }
+
+            let activeFaqIndex = -1;
+
+            function renderFaqs() {
+                const col1 = document.getElementById('faqCol1');
+                const col2 = document.getElementById('faqCol2');
+                if (!col1 || !col2) return;
+                col1.innerHTML = '';
+                col2.innerHTML = '';
+
+                const mid = Math.ceil(siteFaqs.length / 2);
+
+                siteFaqs.forEach((faq, index) => {
+                    const isActive = index === activeFaqIndex;
+                    const container = index < mid ? col1 : col2;
+
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'faq-wrapper';
+
+                    const item = document.createElement('div');
+                    item.className = 'faq-item';
+
+                    if (isActive) {
+                        item.innerHTML = `
+                        <span class="faq-item-title">${faq.q}</span>
+                        <div class="faq-icon active-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        </div>
+                    `;
+                        item.onclick = () => {
+                            activeFaqIndex = -1;
+                            renderFaqs();
+                        };
+
+                        const answer = document.createElement('div');
+                        answer.className = 'faq-answer';
+                        const formattedAnswer = faq.a.replace(/\n/g, '<br>');
+                        answer.innerHTML = `<p>${formattedAnswer}</p>`;
+
+                        wrapper.appendChild(item);
+                        wrapper.appendChild(answer);
+                    } else {
+                        item.innerHTML = `
+                        <span class="faq-item-title">${faq.q}</span>
+                        <div class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        </div>
+                    `;
+                        item.onclick = () => {
+                            activeFaqIndex = index;
+                            renderFaqs();
+                        };
+                        wrapper.appendChild(item);
+                    }
+                    container.appendChild(wrapper);
+                });
+            }
+
+            // Initialize FAQ
+            if (document.getElementById('faqCol1')) {
+                renderFaqs();
+            }
+
+            // --- Modal Logic ---
+            function openModal(src) {
+                const modal = document.getElementById('projectModal');
+                const modalImg = document.getElementById('modalImg');
+                modal.style.display = 'flex';
+                modalImg.src = src;
+            }
+
+            function closeModal() {
+                document.getElementById('projectModal').style.display = 'none';
+            }
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!bioDropdown.contains(e.target) && !bioTrigger.contains(e.target)) {
+                    bioDropdown.classList.remove('open');
+                }
+            });
+        </script>
+
+</body>
+
+</html>
