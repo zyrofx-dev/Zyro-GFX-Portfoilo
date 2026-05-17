@@ -32,7 +32,9 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/blackhole.jpg');
+    background-image: 
+        radial-gradient(circle at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.8) 100%),
+        url('assets/blackhole.jpg');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -846,101 +848,73 @@ body::before {
 /* ── Hero Section ───────────────────────────────────── */
 .hero-section {
     width: 100%;
-    min-height: 80vh;
+    min-height: 100vh;
     padding: 100px 20px 80px;
-    /* Reduced from 160px to move text up */
-    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-
-    /* Removed radial overlay to eliminate the "black box" look */
+    justify-content: center; /* Center everything since we have more content now */
     background: transparent;
 }
 
-.hero-glass-box {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(30px) saturate(180%);
-    -webkit-backdrop-filter: blur(30px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 40px;
-    padding: 80px 100px;
-    max-width: 950px;
-    width: 90%;
-    box-shadow:
-        0 40px 100px rgba(0, 0, 0, 0.12),
-        inset 0 1px 1px rgba(255, 255, 255, 0.2);
-    animation:
-        fadeInScale 1.2s cubic-bezier(0.2, 0.8, 0.2, 1),
-        float-box 6s ease-in-out infinite;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+.hero-main-headline {
+    margin-bottom: 60px;
+    text-align: center;
+    animation: fadeInScale 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-
-/* Shimmer overlay for the glass box */
-.hero-glass-box::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -150%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg,
-            transparent,
-            rgba(255, 255, 255, 0.08),
-            transparent);
-    transform: skewX(-20deg);
-    transition: 0.5s;
-    pointer-events: none;
-}
-
-.hero-glass-box:hover {
-    transform: translateY(-5px) scale(1.02);
-    border-color: rgba(168, 85, 247, 0.4);
-    box-shadow:
-        0 50px 120px rgba(0, 0, 0, 0.5),
-        0 0 30px rgba(168, 85, 247, 0.15),
-        inset 0 1px 1px rgba(255, 255, 255, 0.15);
-}
-
-.hero-glass-box:hover::before {
-    left: 150%;
-    transition: 0.8s ease-in-out;
-}
-
-@keyframes float-box {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-15px);
-    }
-}
-
 
 .hero-title {
     font-family: 'Inter', sans-serif;
-    font-size: 5rem;
+    font-size: 5.5rem;
     font-weight: 700;
-    line-height: 1.05;
-    color: rgba(255, 255, 255, 0.4);
-    /* Muted, premium effect */
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.3); /* Muted, elite look */
     letter-spacing: -0.06em;
-    /* Tight tracking */
-    transition: all 0.4s ease;
-    text-shadow: none;
     margin: 0;
-    cursor: default;
+    transition: all 0.4s ease;
 }
 
 .hero-title:hover {
-    color: #ffffff;
-    transform: scale(1.01);
+    color: #fff;
+    transform: scale(1.02);
+}
+
+.hero-content-new {
+    text-align: center;
+    max-width: 1000px;
+    width: 100%;
+    margin-bottom: 60px; /* Space before marquee */
+    animation: fadeInScale 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.hero-main-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 5.5rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: -0.05em;
+    color: #fff;
+    line-height: 1;
+}
+
+.hero-main-title .dimmed {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.hero-subtitle {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+}
+
+@media (max-width: 1024px) {
+    .hero-main-title {
+        font-size: 3.5rem;
+    }
+    .hero-subtitle {
+        font-size: 1rem;
+    }
 }
 
 
@@ -948,12 +922,12 @@ body::before {
 .works-preview {
     width: 100%;
     overflow: hidden;
-    padding: 60px 0;
-    mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+    padding: 0;
+    background: #000;
 }
 
 .marquee-wrapper {
-    margin-bottom: 20px;
+    margin-bottom: 0;
 }
 
 .marquee-row {
@@ -965,29 +939,21 @@ body::before {
 
 .marquee-content {
     display: flex;
-    gap: 20px;
+    gap: 0;
     flex-shrink: 0;
 }
 
 .marquee-content img {
-    width: 350px;
+    width: 400px;
     aspect-ratio: 16/9;
     object-fit: cover;
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow:
-        0 20px 40px rgba(0, 0, 0, 0.3),
-        inset 0 1px 1px rgba(255, 255, 255, 0.1);
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: none;
+    transition: transform 0.3s ease;
     cursor: pointer;
 }
 
 .marquee-content img:hover {
-    transform: scale(1.08) translateY(-5px);
-    border-color: rgba(168, 85, 247, 0.6);
-    box-shadow:
-        0 30px 60px rgba(0, 0, 0, 0.5),
-        0 0 30px rgba(168, 85, 247, 0.2);
+    transform: scale(1.02);
     z-index: 10;
 }
 

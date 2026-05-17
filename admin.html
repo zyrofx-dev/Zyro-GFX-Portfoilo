@@ -667,7 +667,11 @@
         }
 
         function save() { 
-            localStorage.setItem('reddyData', JSON.stringify(data)); 
+            try {
+                localStorage.setItem('reddyData', JSON.stringify(data)); 
+            } catch (e) {
+                console.warn("Could not save to localStorage (quota exceeded), but data is in memory.", e);
+            }
             return true;
         }
 

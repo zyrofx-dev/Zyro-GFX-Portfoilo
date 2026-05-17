@@ -12,6 +12,8 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -51,7 +53,15 @@
     </header>
 
     <section class="hero-section">
-        <h2 class="hero-title">I Craft Thumbnails<br>As Your Requirements.</h2>
+        <div class="hero-main-headline">
+            <h1 class="hero-title">I Craft Thumbnails<br>As Your Requirements.</h1>
+        </div>
+        
+        <div class="hero-content-new">
+            <span class="expert-badge">+ Thumbnail Designer</span>
+            <h2 class="hero-main-title">Zyro GFX, <span class="dimmed">Your Designer</span></h2>
+            <p class="hero-subtitle">Crafting High Quality And Beautiful Thumbnails For Creators.</p>
+        </div>
 
         <!-- Works Section (Marquee - 2 Rows) -->
         <div id="works" class="works-preview">
@@ -69,14 +79,9 @@
                 </div>
             </div>
         </div>
-        <!-- About Me Section (Reference Match) -->
+    </section>
         <section id="about" class="section about-section">
             <div class="container">
-                <div class="profile-header">
-                    <span class="expert-badge">✦ Thumbnail Designer</span>
-                    <h2 class="profile-main-title">Zyro GFX, <span class="dimmed">Your Designer</span></h2>
-                    <p class="profile-subtitle">Crafting High Quality And Beautiful Thumbnails For Creators.</p>
-                </div>
 
                 <div class="profile-grid">
                     <!-- Left: Profile Card -->
@@ -349,15 +354,15 @@
                             inquiries.</p>
                     </div>
 
-                    <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent successfully!');">
+                    <form class="contact-form" id="contactForm">
                         <div class="form-row">
-                            <input type="text" placeholder="Name" required>
-                            <input type="email" placeholder="Email" required>
+                            <input type="text" id="contactName" placeholder="Name" required>
+                            <input type="email" id="contactEmail" placeholder="Email" required>
                         </div>
                         <div class="form-row">
-                            <textarea placeholder="Message" rows="5" required></textarea>
+                            <textarea id="contactMessage" placeholder="Message" rows="5" required></textarea>
                         </div>
-                        <button type="submit" class="contact-submit-btn">Send Message</button>
+                        <button type="submit" class="contact-submit-btn" id="contactSubmitBtn">Send Message</button>
                     </form>
                 </div>
             </div>
@@ -505,52 +510,145 @@
                             <span class="skill-tag-pill">Blender</span>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
 
         <script>
-            // --- Works: Load from localStorage ---
+            // --- Supabase Config ---
+            const SUPABASE_URL = 'https://ekiszbfuxqelbejmawtv.supabase.co';
+            const SUPABASE_KEY = 'sb_publishable_ZZjNsSkxVB5iE4nPJCi3GQ_smTCHmju';
+            const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+            let siteData = { works: [], faq: [], rev: [], pricing: {} };
+
+            // --- Load All Data from Supabase ---
+            async function initSite() {
+                try {
+                    const { data, error } = await supabaseClient
+                        .from('site_settings')
+                        .select('content')
+                        .eq('key', 'portfolio_data')
+                        .single();
+
+                    if (data && data.content) {
+                        siteData = data.content;
+                    }
+                } catch (err) {
+                    console.error("Error loading Supabase data:", err);
+                    // Fallback to localStorage if Supabase fails
+                    const local = JSON.parse(localStorage.getItem('reddyData'));
+                    if (local) siteData = local;
+                }
+
+                // Trigger all UI updates
+                loadWorks();
+                renderReviews(0);
+                updatePricingUI();
+                renderFaqs();
+            }
+
+            // --- Works: Rendering Logic ---
             function loadWorks() {
-                const stored = JSON.parse(localStorage.getItem('reddyData')) || { works: [] };
-                let works = stored.works || [];
+                let works = siteData.works || [];
 
-                // Normalize: support both old string format and new object format
-                works = works.map(w => typeof w === 'object' ? w : { src: w, name: w });
+                // Normalize and filter out empty/placeholder strings
+                works = works.map(w => typeof w === 'object' ? w : { src: w, name: w })
+                             .filter(w => w.src && !w.src.startsWith('Work '));
 
-                // Fallback to default thumbs if admin hasn't added any yet
+                // Fallback to default high-quality thumbs if no valid works are found
                 if (works.length === 0) {
                     works = [
-                        { src: 'assets/thumb1.jpg', name: 'Work 1' },
-                        { src: 'assets/thumb2.jpg', name: 'Work 2' },
-                        { src: 'assets/thumb3.jpg', name: 'Work 3' },
-                        { src: 'assets/thumb4.jpg', name: 'Work 4' },
-                        { src: 'assets/thumb5.jpg', name: 'Work 5' },
+                        { src: 'assets/2.jpg', name: 'Gaming Thumbnail' },
+                        { src: 'assets/Lasso.jpg', name: 'Creative Work' },
+                        { src: 'assets/Zenitsu3.jpg', name: 'Anime Edit' },
+                        { src: 'assets/bayya%20sunny%20yadav%20psd%20%5D.jpg', name: 'Portrait Design' },
+                        { src: 'assets/bg.jpg', name: 'Premium Design' }
                     ];
                 }
 
                 function makeItems(list) {
                     return list.map((w, i) =>
                         `<div class="work-item" onclick="openModal('${w.src}')">
-                        <img src="${w.src}" alt="${w.name}">
-                    </div>`
+                            <img src="${w.src}" alt="${w.name}" onerror="this.src='assets/2.jpg'; this.onerror=null;">
+                        </div>`
                     ).join('');
                 }
 
                 const items = makeItems(works);
-                // Row 1 scrolls left — forward order
-                document.getElementById('marqueeRow1').innerHTML =
-                    `<div class="marquee-content">${items}</div><div class="marquee-content" aria-hidden="true">${items}</div>`;
+                const row1 = document.getElementById('marqueeRow1');
+                const row2 = document.getElementById('marqueeRow2');
+                
+                if (row1) row1.innerHTML = `<div class="marquee-content">${items}</div><div class="marquee-content" aria-hidden="true">${items}</div>`;
 
-                // Row 2 scrolls right — reverse order
-                const reversed = [...works].reverse();
-                const itemsRev = makeItems(reversed);
-                document.getElementById('marqueeRow2').innerHTML =
-                    `<div class="marquee-content">${itemsRev}</div><div class="marquee-content" aria-hidden="true">${itemsRev}</div>`;
+                if (row2) {
+                    const reversed = [...works].reverse();
+                    const itemsRev = makeItems(reversed);
+                    row2.innerHTML = `<div class="marquee-content">${itemsRev}</div><div class="marquee-content" aria-hidden="true">${itemsRev}</div>`;
+                }
             }
 
-            loadWorks();
+            // --- Contact Form Submission ---
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const btn = document.getElementById('contactSubmitBtn');
+                    const originalText = btn.textContent;
+                    
+                    const name = document.getElementById('contactName').value;
+                    const email = document.getElementById('contactEmail').value;
+                    const message = document.getElementById('contactMessage').value;
+                    
+                    btn.disabled = true;
+                    btn.textContent = 'Sending...';
+                    
+                    try {
+                        // 1. Fetch existing messages
+                        let messages = [];
+                        const { data, error: fetchError } = await supabaseClient
+                            .from('site_settings')
+                            .select('content')
+                            .eq('key', 'contact_messages')
+                            .single();
+                        
+                        if (data && data.content) {
+                            messages = data.content;
+                        }
+                        
+                        // 2. Add new message
+                        const newMessage = {
+                            id: Date.now(),
+                            name,
+                            email,
+                            message,
+                            date: new Date().toLocaleString(),
+                            read: false
+                        };
+                        
+                        messages.unshift(newMessage); // Latest first
+                        
+                        // 3. Save back to Supabase
+                        const { error: upsertError } = await supabaseClient
+                            .from('site_settings')
+                            .upsert({ key: 'contact_messages', content: messages }, { onConflict: 'key' });
+                        
+                        if (upsertError) throw upsertError;
+                        
+                        alert('Message sent successfully! I will get back to you soon.');
+                        contactForm.reset();
+                    } catch (err) {
+                        console.error('Contact error:', err);
+                        alert('Error sending message. Please try again later.');
+                    } finally {
+                        btn.disabled = false;
+                        btn.textContent = originalText;
+                    }
+                });
+            }
+
+            // Initialize Everything
+            initSite();
 
             const bioTrigger = document.getElementById('bioTrigger');
             const bioDropdown = document.getElementById('bioDropdown');
@@ -583,14 +681,14 @@
                 {
                     name: "MrBeast Editor",
                     role: "YouTube Creator · 200M+ Subs",
-                    quote: "Reddy completely transformed our thumbnail game. Every design he delivers stops the scroll instantly — our CTR jumped 48% in the first month. The attention to colour psychology and composition is on another level.",
+                    quote: "Zyro completely transformed our thumbnail game. Every design he delivers stops the scroll instantly — our CTR jumped 48% in the first month. The attention to colour psychology and composition is on another level.",
                     stars: 5,
                     avatar: "assets/profile.png"
                 },
                 {
                     name: "TechBurst",
                     role: "Tech Channel · 5M Subs",
-                    quote: "Working with Reddy is unlike any other designer I've hired. He doesn't just make pretty thumbnails — he makes thumbnails that convert. Fast delivery, great communication, and the results speak for themselves.",
+                    quote: "Working with Zyro is unlike any other designer I've hired. He doesn't just make pretty thumbnails — he makes thumbnails that convert. Fast delivery, great communication, and the results speak for themselves.",
                     stars: 5,
                     avatar: "assets/profile.png"
                 },
@@ -604,7 +702,7 @@
                 {
                     name: "FinanceFlow",
                     role: "Finance Creator · 800K Subs",
-                    quote: "Professional, creative, and incredibly fast. Reddy took our brand visuals to a whole new level. Every thumbnail feels premium and perfectly aligned with what our audience responds to.",
+                    quote: "Professional, creative, and incredibly fast.  took our brand visuals to a whole new level. Every thumbnail feels premium and perfectly aligned with what our audience responds to.",
                     stars: 5,
                     avatar: "assets/profile.png"
                 }
@@ -651,13 +749,14 @@
             renderReview(0);
 
             // --- Pricing Logic ---
-            const siteData = JSON.parse(localStorage.getItem('reddyData')) || {};
-            if (siteData.pricing) {
-                if (siteData.pricing.p1_inr) document.getElementById('price1_inr').textContent = siteData.pricing.p1_inr;
-                if (siteData.pricing.p1_usd) document.getElementById('price1_usd').textContent = siteData.pricing.p1_usd;
-                if (siteData.pricing.p2_inr) document.getElementById('price2_inr').textContent = siteData.pricing.p2_inr;
-                if (siteData.pricing.p2_usd) document.getElementById('price2_usd').textContent = siteData.pricing.p2_usd;
-                if (siteData.pricing.p3_inr) document.getElementById('price3_inr').textContent = siteData.pricing.p3_inr;
+            function updatePricingUI() {
+                if (siteData.pricing) {
+                    if (siteData.pricing.p1_inr) document.getElementById('price1_inr').textContent = siteData.pricing.p1_inr;
+                    if (siteData.pricing.p1_usd) document.getElementById('price1_usd').textContent = siteData.pricing.p1_usd;
+                    if (siteData.pricing.p2_inr) document.getElementById('price2_inr').textContent = siteData.pricing.p2_inr;
+                    if (siteData.pricing.p2_usd) document.getElementById('price2_usd').textContent = siteData.pricing.p2_usd;
+                    if (siteData.pricing.p3_inr) document.getElementById('price3_inr').textContent = siteData.pricing.p3_inr;
+                }
             }
 
             function toggleCurrency() {
@@ -686,11 +785,13 @@
             ];
 
             let siteFaqs = [];
-            if (siteData && siteData.faq && siteData.faq.length > 0) {
-                siteFaqs = siteData.faq;
-            } else {
-                siteFaqs = fallbackFaqs;
-            }
+            
+            function renderFaqs() {
+                if (siteData && siteData.faq && siteData.faq.length > 0) {
+                    siteFaqs = siteData.faq;
+                } else {
+                    siteFaqs = fallbackFaqs;
+                }
 
             let activeFaqIndex = -1;
 
