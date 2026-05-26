@@ -53,15 +53,7 @@
     </header>
 
     <section class="hero-section">
-        <div class="hero-main-headline">
-            <h1 class="hero-title">I Craft Thumbnails<br>As Your Requirements.</h1>
-        </div>
-        
-        <div class="hero-content-new">
-            <span class="expert-badge">+ Thumbnail Designer</span>
-            <h2 class="hero-main-title">Zyro GFX, <span class="dimmed">Your Designer</span></h2>
-            <p class="hero-subtitle">Crafting High Quality And Beautiful Thumbnails For Creators.</p>
-        </div>
+        <h2 class="hero-title">I Craft Thumbnails<br>As Your Requirements.</h2>
 
         <!-- Works Section (Marquee - 2 Rows) -->
         <div id="works" class="works-preview">
@@ -77,11 +69,18 @@
                 <div class="marquee-row scroll-right" id="marqueeRow2">
                     <!-- Dynamically populated from localStorage -->
                 </div>
+
             </div>
         </div>
-    </section>
+        </div>
+        <!-- About Me Section (Reference Match) -->
         <section id="about" class="section about-section">
             <div class="container">
+                <div class="profile-header">
+                    <span class="expert-badge">✦ Thumbnail Designer</span>
+                    <h2 class="profile-main-title">Zyro GFX, <span class="dimmed">Your Designer</span></h2>
+                    <p class="profile-subtitle">Crafting High Quality And Beautiful Thumbnails For Creators.</p>
+                </div>
 
                 <div class="profile-grid">
                     <!-- Left: Profile Card -->
@@ -354,15 +353,15 @@
                             inquiries.</p>
                     </div>
 
-                    <form class="contact-form" id="contactForm">
+                    <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent successfully!');">
                         <div class="form-row">
-                            <input type="text" id="contactName" placeholder="Name" required>
-                            <input type="email" id="contactEmail" placeholder="Email" required>
+                            <input type="text" placeholder="Name" required>
+                            <input type="email" placeholder="Email" required>
                         </div>
                         <div class="form-row">
-                            <textarea id="contactMessage" placeholder="Message" rows="5" required></textarea>
+                            <textarea placeholder="Message" rows="5" required></textarea>
                         </div>
-                        <button type="submit" class="contact-submit-btn" id="contactSubmitBtn">Send Message</button>
+                        <button type="submit" class="contact-submit-btn">Send Message</button>
                     </form>
                 </div>
             </div>
@@ -543,7 +542,7 @@
 
                 // Trigger all UI updates
                 loadWorks();
-                renderReviews(0);
+                renderReview(0);
                 updatePricingUI();
                 renderFaqs();
             }
@@ -552,99 +551,37 @@
             function loadWorks() {
                 let works = siteData.works || [];
 
-                // Normalize and filter out empty/placeholder strings
-                works = works.map(w => typeof w === 'object' ? w : { src: w, name: w })
-                             .filter(w => w.src && !w.src.startsWith('Work '));
+                // Normalize: support both old string format and new object format
+                works = works.map(w => typeof w === 'object' ? w : { src: w, name: w });
 
-                // Fallback to default high-quality thumbs if no valid works are found
+                // Fallback to default thumbs if admin hasn't added any yet
                 if (works.length === 0) {
                     works = [
                         { src: 'assets/2.jpg', name: 'Gaming Thumbnail' },
                         { src: 'assets/Lasso.jpg', name: 'Creative Work' },
                         { src: 'assets/Zenitsu3.jpg', name: 'Anime Edit' },
-                        { src: 'assets/bayya%20sunny%20yadav%20psd%20%5D.jpg', name: 'Portrait Design' },
-                        { src: 'assets/bg.jpg', name: 'Premium Design' }
+                        { src: 'assets/bayya sunny yadav psd ].jpg', name: 'Portrait Design' },
                     ];
                 }
 
                 function makeItems(list) {
                     return list.map((w, i) =>
                         `<div class="work-item" onclick="openModal('${w.src}')">
-                            <img src="${w.src}" alt="${w.name}" onerror="this.src='assets/2.jpg'; this.onerror=null;">
-                        </div>`
+                        <img src="${w.src}" alt="${w.name}">
+                    </div>`
                     ).join('');
                 }
 
                 const items = makeItems(works);
-                const row1 = document.getElementById('marqueeRow1');
-                const row2 = document.getElementById('marqueeRow2');
-                
-                if (row1) row1.innerHTML = `<div class="marquee-content">${items}</div><div class="marquee-content" aria-hidden="true">${items}</div>`;
+                // Row 1 scrolls left — forward order
+                document.getElementById('marqueeRow1').innerHTML =
+                    `<div class="marquee-content">${items}</div><div class="marquee-content" aria-hidden="true">${items}</div>`;
 
-                if (row2) {
-                    const reversed = [...works].reverse();
-                    const itemsRev = makeItems(reversed);
-                    row2.innerHTML = `<div class="marquee-content">${itemsRev}</div><div class="marquee-content" aria-hidden="true">${itemsRev}</div>`;
-                }
-            }
-
-            // --- Contact Form Submission ---
-            const contactForm = document.getElementById('contactForm');
-            if (contactForm) {
-                contactForm.addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                    const btn = document.getElementById('contactSubmitBtn');
-                    const originalText = btn.textContent;
-                    
-                    const name = document.getElementById('contactName').value;
-                    const email = document.getElementById('contactEmail').value;
-                    const message = document.getElementById('contactMessage').value;
-                    
-                    btn.disabled = true;
-                    btn.textContent = 'Sending...';
-                    
-                    try {
-                        // 1. Fetch existing messages
-                        let messages = [];
-                        const { data, error: fetchError } = await supabaseClient
-                            .from('site_settings')
-                            .select('content')
-                            .eq('key', 'contact_messages')
-                            .single();
-                        
-                        if (data && data.content) {
-                            messages = data.content;
-                        }
-                        
-                        // 2. Add new message
-                        const newMessage = {
-                            id: Date.now(),
-                            name,
-                            email,
-                            message,
-                            date: new Date().toLocaleString(),
-                            read: false
-                        };
-                        
-                        messages.unshift(newMessage); // Latest first
-                        
-                        // 3. Save back to Supabase
-                        const { error: upsertError } = await supabaseClient
-                            .from('site_settings')
-                            .upsert({ key: 'contact_messages', content: messages }, { onConflict: 'key' });
-                        
-                        if (upsertError) throw upsertError;
-                        
-                        alert('Message sent successfully! I will get back to you soon.');
-                        contactForm.reset();
-                    } catch (err) {
-                        console.error('Contact error:', err);
-                        alert('Error sending message. Please try again later.');
-                    } finally {
-                        btn.disabled = false;
-                        btn.textContent = originalText;
-                    }
-                });
+                // Row 2 scrolls right — reverse order
+                const reversed = [...works].reverse();
+                const itemsRev = makeItems(reversed);
+                document.getElementById('marqueeRow2').innerHTML =
+                    `<div class="marquee-content">${itemsRev}</div><div class="marquee-content" aria-hidden="true">${itemsRev}</div>`;
             }
 
             // Initialize Everything
@@ -702,7 +639,7 @@
                 {
                     name: "FinanceFlow",
                     role: "Finance Creator · 800K Subs",
-                    quote: "Professional, creative, and incredibly fast.  took our brand visuals to a whole new level. Every thumbnail feels premium and perfectly aligned with what our audience responds to.",
+                    quote: "Professional, creative, and incredibly fast. Zyro took our brand visuals to a whole new level. Every thumbnail feels premium and perfectly aligned with what our audience responds to.",
                     stars: 5,
                     avatar: "assets/profile.png"
                 }
@@ -785,7 +722,8 @@
             ];
 
             let siteFaqs = [];
-            
+            let activeFaqIndex = -1;
+
             function renderFaqs() {
                 if (siteData && siteData.faq && siteData.faq.length > 0) {
                     siteFaqs = siteData.faq;
@@ -793,9 +731,6 @@
                     siteFaqs = fallbackFaqs;
                 }
 
-            let activeFaqIndex = -1;
-
-            function renderFaqs() {
                 const col1 = document.getElementById('faqCol1');
                 const col2 = document.getElementById('faqCol2');
                 if (!col1 || !col2) return;
@@ -850,11 +785,6 @@
                 });
             }
 
-            // Initialize FAQ
-            if (document.getElementById('faqCol1')) {
-                renderFaqs();
-            }
-
             // --- Modal Logic ---
             function openModal(src) {
                 const modal = document.getElementById('projectModal');
@@ -866,13 +796,6 @@
             function closeModal() {
                 document.getElementById('projectModal').style.display = 'none';
             }
-
-            // Close dropdown when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!bioDropdown.contains(e.target) && !bioTrigger.contains(e.target)) {
-                    bioDropdown.classList.remove('open');
-                }
-            });
         </script>
 
 </body>
