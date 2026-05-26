@@ -567,7 +567,7 @@
                 function makeItems(list) {
                     return list.map((w, i) =>
                         `<div class="work-item" onclick="openModal('${w.src}')">
-                        <img src="${w.src}" alt="${w.name}">
+                        <img src="${w.src}" alt="${w.name}" loading="lazy" decoding="async">
                     </div>`
                     ).join('');
                 }
